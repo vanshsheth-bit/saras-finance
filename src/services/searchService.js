@@ -43,6 +43,46 @@ export async function fetchSearchResults(query, offset = 0, limit = 10) {
     const nextOffset =
       typeof data?.continue?.sroffset === 'number' ? data.continue.sroffset : null
 
+    if (!searchResults.length) {
+      return { results: [], nextOffset, totalHits }
+    }
+
+    
+    const pageIds = searchResults.map((item) => item.pageid).join('|')
+
+    let extractsById = {}
+
+    try {
+      const { data: extractData } = await axios.get(WIKIPEDIA_API_ENDPOINT, {
+        params: {
+          action: 'query',
+          prop: 'extracts',
+          exintro: 1,
+          explaintext: 1,
+          pageids: pageIds,
+          format: 'json',
+          origin: '*'
+        }
+      })
+
+      const pages = extractData?.query?.pages || {}
+      for (const pageId in pages) {
+        if (Object.prototype.hasOwnProperty.call(pages, pageId)) {
+          const extract = stripHtml(pages[pageId].extract || '')
+
+          // Keep the description reasonably sized but longer than snippet.
+          const maxDescriptionLength = 600
+          extractsById[pageId] =
+            extract.length > maxDescriptionLength
+              ? extract.slice(0, maxDescriptionLength).trimEnd() + '…'
+              : extract
+        }
+      }
+    } catch (extractError) {
+      
+      console.warn('Failed to fetch Wikipedia extracts:', extractError)
+    }
+
     const results = searchResults.map((item) => {
       const cleanSnippet = stripHtml(item.snippet)
 
@@ -56,7 +96,9 @@ export async function fetchSearchResults(query, offset = 0, limit = 10) {
         id: String(item.pageid),
         title: item.title,
         snippet: shortSnippet,
-        description: cleanSnippet,
+        // Prefer the longer extract when available; otherwise fall back
+        // to the cleaned snippet so we always have something meaningful.
+        description: extractsById[item.pageid] || cleanSnippet,
         source: 'Wikipedia',
         trend: null,
         pageid: item.pageid
