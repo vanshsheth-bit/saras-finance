@@ -70,7 +70,7 @@ function onSearch(input) {
     hasMore.value = false
     nextOffset.value = 0
     loadPage(0)
-  }, 300)
+  }, 400)
 }
 
 async function fetchNextPage() {
