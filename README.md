@@ -10,21 +10,21 @@
 
 ## Project Overview
 
-This project is a production-ready search tool built as part of the **Saras Finance Frontend Developer Assignment**. It demonstrates advanced Vue.js concepts, clean component architecture, and modern web development practices.
+This project is a production ready search tool built as part of the **Saras Finance Frontend Developer Assignment**. It demonstrates advanced Vue.js concepts, clean component architecture, and modern web development practices.
 
-### ✨ Key Features
+### Key Features
 
-- **🔍 Real-time Search**: Instant search results from Wikipedia API with debounced input
-- **∞ Infinite Scrolling**: Seamless pagination with automatic loading on scroll
-- **🌓 Dark Mode**: Beautiful light/dark theme with persistent user preferences
-- **📱 Fully Responsive**: Optimized for mobile, tablet, and desktop devices
-- **🎨 Smooth Animations**: Vue transitions for enhanced user experience
-- **♿ Accessible**: Keyboard navigation and ARIA labels for screen readers
-- **⚡ Performance Optimized**: Debouncing, lazy loading, and efficient state management
+- **Real time Search**: Instant search results from Wikipedia API with debounced input
+- **Infinite Scrolling**: Seamless pagination with automatic loading on scroll
+- **Dark Mode**: Beautiful light/dark theme with persistent user preferences
+- **Fully Responsive**: Optimized for mobile, tablet, and desktop devices
+- **Smooth Animations**: Vue transitions for enhanced user experience
+- **Accessible**: Keyboard navigation and ARIA labels for screen readers
+- **Performance Optimized**: Debouncing, lazy loading, and efficient state management
 
 ---
 
-## 🏗️ Architecture & Design Decisions
+## Architecture & Design Decisions
 
 ### Component Structure
 
@@ -88,7 +88,7 @@ Reduces API calls from potentially hundreds to just a few per search query.
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -134,33 +134,33 @@ npm run preview
 
 ---
 
-## 🎨 Features Breakdown
+## Features Breakdown
 
 ### Search Functionality
 
-- **Debounced Input**: 300ms delay prevents excessive API calls
-- **Real-time Results**: Updates as you type
+- **Debounced Input**: 400ms delay prevents excessive API calls
+- **Real time Results**: Updates as you type
 - **Empty State Handling**: Helpful messages when no results found
 - **Query Preservation**: Maintains search context during pagination
 
 ### UI/UX Components
 
 #### SearchBar Component
-- Pill-shaped design with gradient button
+- Pill shaped design with gradient button
 - Emoji icons for visual appeal
-- Theme-aware styling
+- Theme aware styling
 - Enter key support for submission
 
 #### SearchResultItem Component
 - Expandable cards with smooth transitions
-- Color-coded badges based on source type
-- Trend indicators (📈/📉) support
-- Click-to-expand functionality
+- Color coded badges based on source type
+- Trend indicators support
+- Click to expand functionality
 - Hover effects and visual feedback
 
 #### Loader Component
 - Spinning animation with customizable text
-- Theme-aware colors
+- Theme aware colors
 - Centered positioning
 - Slot support for custom messages
 
@@ -168,13 +168,13 @@ npm run preview
 
 | Breakpoint | Layout Adjustments |
 |------------|-------------------|
-| Desktop (>768px) | Full-width search bar, multi-column potential |
+| Desktop (>768px) | Full width search bar, multi column potential |
 | Tablet (≤768px) | Adjusted padding, readable font sizes |
-| Mobile (≤640px) | Stacked layout, touch-optimized buttons |
+| Mobile (≤640px) | Stacked layout, touch optimized buttons |
 
 ---
 
-## 🧪 Performance Optimizations
+## Performance Optimizations
 
 ### 1. **Debouncing**
 Reduces API calls by 90%+ during active typing.
@@ -186,14 +186,14 @@ Only requests 10 results at a time, loading more on scroll.
 Proper cleanup in `onBeforeUnmount` prevents memory leaks.
 
 ### 4. **CSS Transitions**
-Hardware-accelerated animations using `transform` and `opacity`.
+Hardware accelerated animations using `transform` and `opacity`.
 
 ### 5. **Efficient State Management**
-Minimal re-renders with computed properties and reactive refs.
+Minimal re renders with computed properties and reactive refs.
 
 ---
 
-## ♿ Accessibility Features
+## Accessibility Features
 
 - **Keyboard Navigation**: Full keyboard support for all interactive elements
 - **ARIA Labels**: Screen reader support with descriptive labels
@@ -203,7 +203,7 @@ Minimal re-renders with computed properties and reactive refs.
 
 ---
 
-## 🔮 Future Enhancements & Scalability
+## Future Enhancements & Scalability
 
 ### Immediate Improvements
 
@@ -280,7 +280,7 @@ export const searchAPI = {
 
 ---
 
-## 📚 Technical Stack
+## Technical Stack
 
 | Technology | Purpose | Version |
 |-----------|---------|---------|
@@ -292,7 +292,7 @@ export const searchAPI = {
 
 ---
 
-## 🎓 Learning Outcomes
+## Learning Outcomes
 
 This project demonstrates proficiency in:
 
@@ -306,7 +306,7 @@ This project demonstrates proficiency in:
 
 ---
 
-## 📝 Code Quality Practices
+## Code Quality Practices
 
 ### Naming Conventions
 - **Components**: PascalCase (e.g., `SearchBar.vue`)
@@ -318,16 +318,9 @@ This project demonstrates proficiency in:
 - Separation of concerns (UI vs. business logic)
 - DRY (Don't Repeat Yourself) principles
 
-### Comments
-Strategic comments explain **why** decisions were made, not **what** the code does:
-```javascript
-// Simulate real-world latency so loaders are visible
-await new Promise((resolve) => setTimeout(resolve, 400))
-```
-
 ---
 
-## 🐛 Known Limitations
+## Known Limitations
 
 1. **Wikipedia API Rate Limits**: No rate limit handling implemented (would add retry logic for production)
 2. **Result Caching**: No caching layer (would add LRU cache for frequent queries)
@@ -336,7 +329,7 @@ await new Promise((resolve) => setTimeout(resolve, 400))
 
 ---
 
-## 💡 Alternative Approaches Considered
+## Alternative Approaches Considered
 
 ### 1. API Selection
 **Considered**: Postman Echo, OpenAI, Unsplash
@@ -345,17 +338,17 @@ await new Promise((resolve) => setTimeout(resolve, 400))
 
 ### 2. State Management
 **Considered**: Pinia/Vuex
-**Chosen**: Component-level reactive refs
+**Chosen**: Component level reactive refs
 **Reason**: Application complexity doesn't justify global state management overhead
 
 ### 3. Styling Approach
-**Considered**: Tailwind CSS, CSS-in-JS
+**Considered**: Tailwind CSS, CSS in JS
 **Chosen**: Scoped CSS
 **Reason**: Better performance, no additional dependencies, full control
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **Wikipedia API** for providing free, accessible search data
 - **Vue.js Team** for the excellent documentation and framework
@@ -363,16 +356,16 @@ await new Promise((resolve) => setTimeout(resolve, 400))
 
 ---
 
-## 📧 Contact
+## Contact
 
-**Developer**: [Your Name]  
-**Email**: [your.email@example.com]  
-**LinkedIn**: [linkedin.com/in/yourprofile]  
-**Portfolio**: [yourportfolio.com]
+**Developer**: Vansh Sheth  
+**Email**: shethvansh4@gmail.com 
+**LinkedIn**: https://www.linkedin.com/in/vansh-sheth-286b34277/ 
+**Portfolio**: https://vansh-portfolio-pink.vercel.app/
 
 ---
 
-## 📄 License
+## License
 
 This project is created as part of an assignment and is available for review purposes.
 
@@ -380,8 +373,8 @@ This project is created as part of an assignment and is available for review pur
 
 <div align="center">
 
-**Built with ❤️ using Vue.js**
+**Built using Vue.js**
 
-⭐ If you found this project interesting, please star the repository!
+ If you found this project interesting, please star the repository!
 
 </div>
