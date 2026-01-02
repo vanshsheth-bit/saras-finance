@@ -203,6 +203,10 @@ function getBadgeClass() {
   color: #0f172a;
 }
 
+.result-item--dark .result-title {
+  color: #f9fafb;
+}
+
 .result-snippet {
   font-size: 15px;
   margin: 0;
