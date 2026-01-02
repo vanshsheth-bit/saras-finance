@@ -10,14 +10,26 @@ import axios from 'axios'
 const WIKIPEDIA_API_ENDPOINT = 'https://en.wikipedia.org/w/api.php'
 
 /**
- * Strip basic HTML tags from a snippet returned by Wikipedia.
- * Wikipedia search snippets include <span class="searchmatch"> tags.
+ * Strip basic HTML tags from a snippet returned by Wikipedia and decode
+ * common HTML entities so the text renders cleanly in the UI.
+ * Wikipedia search snippets include <span class="searchmatch"> tags and
+ * entities such as &quot; and &#039;.
  *
  * @param {string} html
  * @returns {string}
  */
 function stripHtml(html = '') {
-  return html.replace(/<[^>]+>/g, '')
+  const withoutTags = html.replace(/<[^>]+>/g, ' ')
+
+  // Decode a small set of common entities returned by Wikipedia.
+  return withoutTags
+    .replace(/&quot;/g, '"')
+    .replace(/&#039;/g, "'")
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/\s+/g, ' ')
+    .trim()
 }
 
 /**
@@ -65,14 +77,20 @@ export async function fetchSearchResults(query, offset = 0, limit = 10) {
     const results = searchResults.map((item) => {
       const cleanSnippet = stripHtml(item.snippet)
 
+      // Use a shorter version for the collapsed snippet and keep the
+      // full cleaned text for the expanded description so users see
+      // more detail when they open a result.
+      const maxSnippetLength = 160
+      const shortSnippet =
+        cleanSnippet.length > maxSnippetLength
+          ? cleanSnippet.slice(0, maxSnippetLength).trimEnd() + '…'
+          : cleanSnippet
+
       return {
         // Use Wikipedia pageid as a stable identifier
         id: String(item.pageid),
         title: item.title,
-        // Map snippet to both snippet and description so that
-        // the existing UI (title + snippet + expandable description)
-        // continues to work without visual changes.
-        snippet: cleanSnippet,
+        snippet: shortSnippet,
         description: cleanSnippet,
         // Source is fixed to "Wikipedia" to keep the existing badge UI.
         source: 'Wikipedia',
