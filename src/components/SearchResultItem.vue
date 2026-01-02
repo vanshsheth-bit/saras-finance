@@ -199,6 +199,8 @@ function getBadgeClass() {
   margin: 0 0 10px 0;
   line-height: 1.4;
   transition: color 0.3s ease;
+  /* Light theme title color: strong contrast on white */
+  color: #0f172a;
 }
 
 .result-snippet {
@@ -207,23 +209,13 @@ function getBadgeClass() {
   line-height: 1.6;
   transition: color 0.3s ease;
   
-  /* Light theme */
-  color: #6b7280;
+  /* Light theme: slightly darker for better readability */
+  color: #4b5563;
 }
 
 .result-item--dark .result-snippet {
   /* Dark theme */
   color: #9ca3af;
-}
-
-.result-details {
-  margin-top: 16px;
-  padding-top: 16px;
-  border-top: 1px solid;
-  transition: border-color 0.3s ease;
-  
-  /* Light theme */
-  border-top-color: #e5e7eb;
 }
 
 .result-item--dark .result-details {
@@ -237,8 +229,8 @@ function getBadgeClass() {
   line-height: 1.6;
   transition: color 0.3s ease;
   
-  /* Light theme */
-  color: #4b5563;
+  /* Light theme: darker body text for long descriptions */
+  color: #111827;
 }
 
 .result-item--dark .details-text {
