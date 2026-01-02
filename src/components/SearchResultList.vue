@@ -5,7 +5,7 @@
       v-for="item in results"
       :key="item.id"
       :item="item"
-      :dark="dark"
+      :dark="props.dark"
     />
   </div>
 </template>
@@ -24,9 +24,6 @@ const props = defineProps({
     default: false
   }
 })
-
-// Expose dark flag for template usage
-const dark = props.dark
 </script>
 
 <style scoped>

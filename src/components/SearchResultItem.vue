@@ -3,7 +3,7 @@
     :class="[
       'result-item', 
       { 
-        'result-item--dark': dark, 
+        'result-item--dark': props.dark, 
         'result-item--expanded': expanded 
       }
     ]" 
@@ -49,7 +49,6 @@ const props = defineProps({
 })
 
 const expanded = ref(false)
-const dark = props.dark
 
 function toggle() {
   expanded.value = !expanded.value
